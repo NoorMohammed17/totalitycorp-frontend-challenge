@@ -1,10 +1,14 @@
-
+import HomePage from './pages/Home'
 import './App.css'
 
 function App() {
  
 
-  return <h1>E-commerce app</h1>
+  return (
+    <>
+    <HomePage/>
+    </>
+  )
 }
 
 export default App
