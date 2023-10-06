@@ -1,4 +1,5 @@
-
+import { useSelector } from 'react-redux';
+import { useDispatch } from "react-redux";
 import {
     Box,
     Flex,
@@ -21,6 +22,8 @@ import { HamburgerIcon, CloseIcon, } from '@chakra-ui/icons';
 import { FiHeart } from "react-icons/fi";
 import { AiOutlineShoppingCart, AiOutlineUserAdd } from "react-icons/ai";
 import HomePage from '../pages/Home';
+import Auth from './Auth';
+import { authActions } from '../store/Store';
 
 
 
@@ -48,7 +51,13 @@ const NavLink = (props) => {
 }
 
 export default function Navbar() {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const dispatch = useDispatch();
+    const isAuth = useSelector(state => state.authReducer.isAuthenticated);
+
+    const logoutHandler = () => {
+        dispatch(authActions.logout())
+    }
 
     return (
         <>
@@ -62,7 +71,7 @@ export default function Navbar() {
                         onClick={isOpen ? onClose : onOpen}
                     />
                     <HStack spacing={8} alignItems={'center'}>
-                        <Box color={'white'}><Text  as='i'   fontSize={{ base: 'xl', sm: '3xl' }}>E-commerce</Text></Box>
+                        <Box color={'white'}><Text as='i' fontSize={{ base: 'xl', sm: '3xl' }}>E-commerce</Text></Box>
                         <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
                             {Links.map((link) => (
                                 <NavLink key={link}>{link}</NavLink>
@@ -85,43 +94,46 @@ export default function Navbar() {
                             aria-label='cart'
                             icon={<AiOutlineShoppingCart />}
                         />
-                         <IconButton
-                        isRound={true}
-                        fontSize='20px'
-                            colorScheme='teal'
-                            aria-label='Login'
-                            icon={<AiOutlineUserAdd />} />
-
-                        <Menu>
-                            <MenuButton
-                                as={Button}
-                                rounded={'full'}
-                                variant={'link'}
-                                cursor={'pointer'}
-                                minW={0}>
-                                <Avatar
-                                    size={'sm'}
-                                    src={'https://avatars.dicebear.com/api/male/username.svg'}
-                                />
-                            </MenuButton>
-                            <MenuList alignItems={'center'}>
-                                <br />
-                                <Center>
+                        {!isAuth &&
+                            <IconButton
+                                isRound={true}
+                                fontSize='20px'
+                                colorScheme='teal'
+                                aria-label='Login'
+                                icon={<AiOutlineUserAdd />} />}
+                        {isAuth &&
+                            <Menu>
+                                <MenuButton
+                                    as={Button}
+                                    rounded={'full'}
+                                    variant={'link'}
+                                    cursor={'pointer'}
+                                    minW={0}>
                                     <Avatar
-                                        size={'2xl'}
+                                        size={'sm'}
                                         src={'https://avatars.dicebear.com/api/male/username.svg'}
                                     />
-                                </Center>
-                                <br />
-                                <Center>
-                                    <p>Username</p>
-                                </Center>
-                                <br />
-                                <MenuDivider />
-                              
-                                <MenuItem>Logout</MenuItem>
-                            </MenuList>
-                        </Menu>
+                                </MenuButton>
+                                <MenuList alignItems={'center'}>
+                                    <br />
+                                    <Center>
+                                        <Avatar
+                                            size={'2xl'}
+                                            src={'https://avatars.dicebear.com/api/male/username.svg'}
+                                        />
+                                    </Center>
+                                    <br />
+                                    <Center>
+                                        <p>Username</p>
+                                    </Center>
+                                    <br />
+                                    <MenuDivider />
+
+                                    <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+                                </MenuList>
+                            </Menu>}
+
+
                     </Flex>
                 </Flex>
 
@@ -136,7 +148,12 @@ export default function Navbar() {
                 ) : null}
             </Box>
 
-            <Box p={4}><HomePage/></Box>
+            <Box p={4}>
+                {!isAuth && <Auth />}
+                {isAuth &&
+                    <HomePage />
+                }
+            </Box>
         </>
     )
 }
