@@ -22,8 +22,10 @@ import { HamburgerIcon, CloseIcon, } from '@chakra-ui/icons';
 import { FiHeart } from "react-icons/fi";
 import { AiOutlineShoppingCart, AiOutlineUserAdd } from "react-icons/ai";
 import HomePage from '../pages/Home';
+import propic from '../assets/propic.jpg'
 import Auth from './Auth';
 import { authActions } from '../store/Store';
+import Products from './Product/Product';
 
 
 
@@ -78,11 +80,12 @@ export default function Navbar() {
                             ))}
                         </HStack>
                     </HStack>
-                    <Flex alignItems={'center'} gap={'5px'}>
+                    <Flex alignItems={'center'} gap={'10px'}>
                         <IconButton
                             isRound={true}
                             fontSize='20px'
-                            colorScheme='teal'
+                            
+                            colorScheme='white'
                             aria-label='wishlist'
                             icon={<FiHeart />}
                         />
@@ -90,7 +93,7 @@ export default function Navbar() {
                         <IconButton
                             isRound={true}
                             fontSize='20px'
-                            colorScheme='teal'
+                            colorScheme='white'
                             aria-label='cart'
                             icon={<AiOutlineShoppingCart />}
                         />
@@ -98,7 +101,7 @@ export default function Navbar() {
                             <IconButton
                                 isRound={true}
                                 fontSize='20px'
-                                colorScheme='teal'
+                                colorScheme='white'
                                 aria-label='Login'
                                 icon={<AiOutlineUserAdd />} />}
                         {isAuth &&
@@ -111,7 +114,7 @@ export default function Navbar() {
                                     minW={0}>
                                     <Avatar
                                         size={'sm'}
-                                        src={'https://avatars.dicebear.com/api/male/username.svg'}
+                                        src={propic}
                                     />
                                 </MenuButton>
                                 <MenuList alignItems={'center'}>
@@ -119,7 +122,7 @@ export default function Navbar() {
                                     <Center>
                                         <Avatar
                                             size={'2xl'}
-                                            src={'https://avatars.dicebear.com/api/male/username.svg'}
+                                            src={propic}
                                         />
                                     </Center>
                                     <br />
@@ -129,7 +132,7 @@ export default function Navbar() {
                                     <br />
                                     <MenuDivider />
 
-                                    <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+                                    <MenuItem onClick={logoutHandler}><Center>Logout</Center></MenuItem>
                                 </MenuList>
                             </Menu>}
 
@@ -152,7 +155,10 @@ export default function Navbar() {
                 {!isAuth && <Auth />}
                 {isAuth &&
                     <HomePage />
+                  
+                
                 }
+                {isAuth && <Products/>}
             </Box>
         </>
     )
