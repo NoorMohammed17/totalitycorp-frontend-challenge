@@ -52,7 +52,7 @@ const NavLink = (props) => {
     )
 }
 
-export default function Navbar() {
+export default function Navbar(props) {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const dispatch = useDispatch();
     const isAuth = useSelector(state => state.authReducer.isAuthenticated);
@@ -95,6 +95,7 @@ export default function Navbar() {
                             fontSize='20px'
                             colorScheme='white'
                             aria-label='cart'
+                            onClick={props.onShowCart}
                             icon={<AiOutlineShoppingCart />}
                         />
                         {!isAuth &&
