@@ -1,26 +1,28 @@
-import { Box,Image,Badge,Stack,Text, Icon,
+import {
+  Box, Image, Badge, Stack, Text, Icon,
   chakra,
-  Tooltip, } from '@chakra-ui/react';
+  Tooltip, Center
+} from '@chakra-ui/react';
 import { StarIcon } from '@chakra-ui/icons';
 //import { FiShoppingCart } from 'react-icons/fi'
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 
 
- export default function ProductCard(props) {
+export default function ProductCard(props) {
 
-    const {img,title,stars,reviews,prevPrice,newPrice,company,color,category} = props;
-    return (
-      <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' p={'10px'} justifyContent="center">
-        <Image src={img} alt={title}    
-              height={270}
-              width={'100%'}
-              objectFit={'100%'} />
-  
+  const { img, title, stars, reviews, prevPrice, newPrice, company, color, category } = props;
+  return (
+    <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' p={'10px'} justifyContent="center">
+      <Image src={img} alt={title}
+        height={270}
+        width={'100%'}
+        objectFit={'100%'} />
+      <Center>
         <Box p='6'>
           <Box display='flex' alignItems='baseline'>
             <Badge borderRadius='full' px='2' colorScheme='teal'>
-            {company}
+              {company}
             </Badge>
             <Box
               color='gray.500'
@@ -30,10 +32,10 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
               textTransform='uppercase'
               ml='2'
             >
-              {color} color {category} 
+              {color} color {category}
             </Box>
           </Box>
-  
+
           <Box
             mt='1'
             fontWeight='semibold'
@@ -43,7 +45,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
           >
             {title}
           </Box>
-  
+
           <Stack direction={'row'} align={'center'}>
             <Text fontWeight={800} fontSize={'xl'}>
               ${newPrice}
@@ -62,7 +64,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
               </chakra.a>
             </Tooltip>
           </Stack>
-  
+
           <Box display='flex' mt='2' alignItems='center'>
             {Array(5)
               .fill('')
@@ -78,8 +80,8 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 
           </Box>
 
-      
         </Box>
-      </Box>
-    )
-  }
+      </Center>
+    </Box>
+  )
+}

@@ -29,7 +29,7 @@ import Products from './Product/Product';
 
 
 
-const Links = ['Dashboard', 'Projects', 'Team']
+const Links = ['About', 'Products']
 
 const NavLink = (props) => {
     const { children } = props
