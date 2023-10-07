@@ -31,8 +31,10 @@ import { StarIcon } from '@chakra-ui/icons';
     // }
   
     return (
-      <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-        <Image src={img} alt={title} />
+      <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' p={'10px'}>
+        <Image src={img} alt={title}     height={230}
+            width={282}
+            objectFit={'cover'} />
   
         <Box p='6'>
           <Box display='flex' alignItems='baseline'>

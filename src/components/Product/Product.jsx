@@ -1,7 +1,8 @@
-import ProductCard from "./ProductCard";
+//import ProductCard from "./ProductCard";
 import data from '../../data/data';
 import classes from "./Product.module.css";
 import { SimpleGrid } from "@chakra-ui/react";
+import ProductItem from "./ProductItem";
 
 
 
@@ -11,7 +12,7 @@ const Products = (props) => {
         <h2>Buy your favorite products</h2>
         <SimpleGrid columns={[2, null, 4]} spacing='40px'>
           {data.map((product) => (
-            <ProductCard
+            <ProductItem
               key={new Date()}
               id={new Date()}
               title={product.title}
