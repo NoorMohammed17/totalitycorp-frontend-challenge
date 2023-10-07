@@ -1,40 +1,21 @@
-import { Box,Image,Badge, } from '@chakra-ui/react';
+import { Box,Image,Badge,Stack,Text, Icon,
+  chakra,
+  Tooltip, } from '@chakra-ui/react';
 import { StarIcon } from '@chakra-ui/icons';
+//import { FiShoppingCart } from 'react-icons/fi'
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 
 
  export default function ProductCard(props) {
 
     const {img,title,stars,reviews,prevPrice,newPrice,company,color,category} = props;
-
-    // {
-    //     img: "https://m.media-amazon.com/images/I/61-cBsLhJHL._AC_UY695_.jpg",
-    //     title: "Nike Men's Sneaker",
-    //     star: Math.floor( Math.random() * 7 ),
-    //     reviews: "(123 reviews)",
-    //     prevPrice: "$140,00",
-    //     newPrice: "200",
-    //     company: "Adidas",
-    //     color: "blue",
-    //     category: "sneakers",
-    //   },
-    
-    // const property = {
-    //   imageUrl: 'https://bit.ly/2Z4KKcF',
-    //   imageAlt: 'Rear view of modern home with pool',
-    //   beds: 3,
-    //   baths: 2,
-    //   title: 'Modern home in city center in the heart of historic Los Angeles',
-    //   formattedPrice: '$1,900.00',
-    //   reviewCount: 34,
-    //   rating: 4,
-    // }
-  
     return (
-      <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' p={'10px'}>
-        <Image src={img} alt={title}     height={230}
-            width={282}
-            objectFit={'cover'} />
+      <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' p={'10px'} justifyContent="center">
+        <Image src={img} alt={title}    
+              height={270}
+              width={'100%'}
+              objectFit={'100%'} />
   
         <Box p='6'>
           <Box display='flex' alignItems='baseline'>
@@ -49,7 +30,7 @@ import { StarIcon } from '@chakra-ui/icons';
               textTransform='uppercase'
               ml='2'
             >
-              {color} beds &bull; {category} baths
+              {color} color {category} 
             </Box>
           </Box>
   
@@ -63,12 +44,24 @@ import { StarIcon } from '@chakra-ui/icons';
             {title}
           </Box>
   
-          <Box>
-            {newPrice}
-            <Box as='span' color='gray.600' fontSize='sm'>
-              / wk
-            </Box>
-          </Box>
+          <Stack direction={'row'} align={'center'}>
+            <Text fontWeight={800} fontSize={'xl'}>
+              ${newPrice}
+            </Text>
+            <Text textDecoration={'line-through'} color={'gray.600'}>
+              {prevPrice}
+            </Text>
+            <Tooltip
+              label="Add to cart"
+              bg="white"
+              placement={'top'}
+              color={'purple'}
+              fontSize={'1.2em'}>
+              <chakra.a href={'#'} display={'flex'}>
+                <Icon as={AiOutlineShoppingCart} h={7} w={7} alignSelf={'center'} />
+              </chakra.a>
+            </Tooltip>
+          </Stack>
   
           <Box display='flex' mt='2' alignItems='center'>
             {Array(5)
@@ -82,7 +75,10 @@ import { StarIcon } from '@chakra-ui/icons';
             <Box as='span' ml='2' color='gray.600' fontSize='sm'>
               {reviews} reviews
             </Box>
+
           </Box>
+
+      
         </Box>
       </Box>
     )
