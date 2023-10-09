@@ -3,6 +3,7 @@ import Cart from './components/Cart';
 import Navbar from './components/Navbar';
 import CartProvider from './store/CartProvider';
 import './App.css'
+import Footer from './components/Footer';
 //import About from './pages/About';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
     
      {cartIsShown && <Cart onClose={hideCartHandler} />}
     <Navbar onShowCart={showCartHandler}/>
+    <Footer/>
     </CartProvider>
   )
 }

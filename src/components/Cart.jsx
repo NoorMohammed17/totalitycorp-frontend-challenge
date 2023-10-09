@@ -38,10 +38,12 @@ const Cart = (props) => {
   return (
     <Modal onClose={props.onClose}>
       {cartItems}
-      <div className={classes.total}>
+      {!hasItems && <h1> No items in the cart</h1>}
+      {hasItems &&   <div className={classes.total}>
         <span>Total Amount</span>
         <span>{totalAmount}</span>
-      </div>
+      </div>}
+    
       <div className={classes.actions}>
         <button className={classes['button--alt']} onClick={props.onClose}>
           Close
