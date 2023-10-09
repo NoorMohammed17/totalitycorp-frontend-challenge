@@ -63,7 +63,7 @@ export default function Navbar(props) {
 
     return (
         <>
-            <Box bg={useColorModeValue('#3c0080', '#3c0080')} px={4}>
+            <Box bg={useColorModeValue('#3c0080', '#3c0080')} px={4} position="fixed" width={'100%'}   top={0}>
                 <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
                     <IconButton
                         size={'md'}

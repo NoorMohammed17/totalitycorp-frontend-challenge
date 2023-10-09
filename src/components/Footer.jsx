@@ -23,7 +23,7 @@ const SocialButton = ({
 ) => {
     return (
         <chakra.button
-            bg={useColorModeValue('#540da5')}
+            bg={useColorModeValue('#3c0080')}
             rounded={'full'}
             w={8}
             h={8}
@@ -35,7 +35,7 @@ const SocialButton = ({
             justifyContent={'center'}
             transition={'background 0.3s ease'}
             _hover={{
-                bg: useColorModeValue('#3c0080'),
+                bg: useColorModeValue('#4f178f'),
             }}>
             <VisuallyHidden>{label}</VisuallyHidden>
             {children}
@@ -120,10 +120,10 @@ export default function Footer() {
                                 }}
                             />
                             <IconButton
-                                bg={useColorModeValue('#582a8b', '#3c0080')}
+                                bg={useColorModeValue('#3c0080')}
                                 color={useColorModeValue('white', 'gray.800')}
                                 _hover={{
-                                    bg: '#3c0080',
+                                    bg: '#4d1a88',
                                 }}
                                 aria-label="Subscribe"
                                 icon={<BiMailSend />}
