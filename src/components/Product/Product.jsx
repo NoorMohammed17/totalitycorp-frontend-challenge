@@ -1,30 +1,46 @@
 import {useState, useEffect} from 'react';
+import { useSearchParams ,useLocation} from 'react-router-dom';
+import { SimpleGrid } from "@chakra-ui/react";
+import axios from 'axios';
 import ProductCard from "./ProductCard";
 //import data from '../../data/data';
 import classes from "./Product.module.css";
-import { SimpleGrid } from "@chakra-ui/react";
+
+
 
 
 const url = 'https://lazy-mite-cardigan.cyclic.app/products'
+
 const Products = (props) => {
   const [products, setProducts] = useState([]);
+  const [searchParams] = useSearchParams();
+  const location = useLocation()
 
-  const productsFetchHandler = async() => {
-    try{
-      const response = await fetch(url);
-      const data= await response.json();
-      console.log(data)
-      setProducts(data)
+  let obj = {
+    params: {
+        category: searchParams.getAll('category'),
+        _sort: searchParams.get('order') && 'price',
+        _order: searchParams.get('order'),
     }
-    catch(err){
+  }
+
+
+
+  const productsFetchHandler = (paramObj) => {
+    axios
+    .get(url, paramObj)
+    .then((res) => {
+    setProducts(res.data)
+    })
+    .catch((err) => {
       console.log(err)
-    }
+    });
    
   }
   useEffect(()=> {
-   productsFetchHandler();
+   productsFetchHandler(obj);
 
-  },[])
+  },[location.search])
 
 
 

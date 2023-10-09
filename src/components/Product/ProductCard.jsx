@@ -58,7 +58,7 @@ export default function ProductCard(props) {
               textTransform='uppercase'
               ml='2'
             >
-              {color} color {category}
+              {color} {category}
             </Box>
           </Box>
 

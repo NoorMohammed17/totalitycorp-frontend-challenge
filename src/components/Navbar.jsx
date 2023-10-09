@@ -21,15 +21,14 @@ import {
 import { HamburgerIcon, CloseIcon, } from '@chakra-ui/icons';
 import { FiHeart } from "react-icons/fi";
 import { AiOutlineShoppingCart, AiOutlineUserAdd } from "react-icons/ai";
-import HomePage from '../pages/Home';
 import propic from '../assets/propic.jpg'
 import Auth from './Auth';
 import { authActions } from '../store/Store';
-import Products from './Product/Product';
+import ProductsPage from '../pages/ProductsPage';
 
 
 
-const Links = ['About', 'Products']
+const Links = [ 'Products']
 
 const NavLink = (props) => {
     const { children } = props
@@ -63,7 +62,7 @@ export default function Navbar(props) {
 
     return (
         <>
-            <Box bg={useColorModeValue('#3c0080', '#3c0080')} px={4} position="fixed" width={'100%'}   top={0}>
+            <Box bg={useColorModeValue('#3c0080', '#3c0080')} px={4} position="sticky" width={'100%'}   top={0} left={0}>
                 <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
                     <IconButton
                         size={'md'}
@@ -154,12 +153,7 @@ export default function Navbar(props) {
 
             <Box p={4}>
                 {!isAuth && <Auth />}
-                {isAuth &&
-                    <HomePage />
-                  
-                
-                }
-                {isAuth && <Products/>}
+                {isAuth && <ProductsPage/>}
             </Box>
         </>
     )
