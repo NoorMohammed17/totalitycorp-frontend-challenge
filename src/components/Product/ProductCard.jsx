@@ -6,10 +6,24 @@ import {
 import { StarIcon } from '@chakra-ui/icons';
 //import { FiShoppingCart } from 'react-icons/fi'
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useContext } from 'react';
+import CartContext from '../../store/cart-context';
 
 
 
 export default function ProductCard(props) {
+
+  const cartCtx = useContext(CartContext);
+
+
+  const addToCartHandler = () => {
+    cartCtx.addItem({
+      id: props.id,
+      name: props.name,
+      
+      price: props.price
+    });
+  };
 
   const { img, title, stars, reviews, prevPrice, newPrice, company, color, category } = props;
   return (
@@ -60,7 +74,7 @@ export default function ProductCard(props) {
               color={'purple'}
               fontSize={'1.2em'}>
               <chakra.a href={'#'} display={'flex'}>
-                <Icon as={AiOutlineShoppingCart} h={7} w={7} alignSelf={'center'} />
+                <Icon as={AiOutlineShoppingCart} h={7} w={7} alignSelf={'center'}  onClick={addToCartHandler(props.id)} />
               </chakra.a>
             </Tooltip>
           </Stack>

@@ -24,9 +24,9 @@ const Cart = (props) => {
       {cartCtx.items.map((item) => (
         <CartItem
           key={item.id}
-          name={item.name}
+          name={item.title}
           amount={item.amount}
-          price={item.price}
+          price={item.newPrice}
           onRemove={cartItemRemoveHandler.bind(null, item.id)}
           onAdd={cartItemAddHandler.bind(null, item)}
         />
