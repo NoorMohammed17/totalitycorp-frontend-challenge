@@ -100,16 +100,16 @@ const Sidebar = () => {
 
             <Stack spacing={1} direction={['row', 'row', 'column', 'column']}
                 marginBottom={'20px'}>
-                <Checkbox colorScheme='green' value={'Nike'} onChange={handleBrandFilter} isChecked={category.includes('Nike')}>
+                <Checkbox colorScheme='green' value={'Nike'} onChange={handleBrandFilter} isChecked={company.includes('Nike')}>
                   Nike
                 </Checkbox>
-                <Checkbox colorScheme='green' value={'Adidas'} onChange={handleBrandFilter} isChecked={category.includes('Adidas')}>
+                <Checkbox colorScheme='green' value={'Adidas'} onChange={handleBrandFilter} isChecked={company.includes('Adidas')}>
                 Adidas
                 </Checkbox>
-                <Checkbox colorScheme='green' value={'Puma'} onChange={handleBrandFilter} isChecked={category.includes('Puma')}>
+                <Checkbox colorScheme='green' value={'Puma'} onChange={handleBrandFilter} isChecked={company.includes('Puma')}>
                 Puma
                 </Checkbox>
-                <Checkbox colorScheme='green' value={'Vans'} onChange={handleBrandFilter} isChecked={category.includes('Vans')}>
+                <Checkbox colorScheme='green' value={'Vans'} onChange={handleBrandFilter} isChecked={company.includes('Vans')}>
                 Vans
                 </Checkbox>
             </Stack>
