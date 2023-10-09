@@ -11,6 +11,10 @@
     margin: 0 0 0.5rem 0;
     color: #363636;
   }
+  .cart-item img{
+    width:200px;
+    height:130px
+  }
   
   .summary {
     width: 10rem;

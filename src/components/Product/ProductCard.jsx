@@ -6,6 +6,7 @@ import {
 import { StarIcon } from '@chakra-ui/icons';
 //import { FiShoppingCart } from 'react-icons/fi'
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useToast } from '@chakra-ui/react'
 import { useContext } from 'react';
 import CartContext from '../../store/cart-context';
 
@@ -14,14 +15,26 @@ import CartContext from '../../store/cart-context';
 export default function ProductCard(props) {
 
   const cartCtx = useContext(CartContext);
+  const toast=useToast();
 
 
   const addToCartHandler = () => {
+    
+    toast({
+      title: 'Item added successfully.',
+      description: "Check in your cart.",
+      status: 'success',
+      duration: 5000,
+      position: 'top',
+      variant: 'top-accent',
+     isClosable: true,
+    })
     cartCtx.addItem({
       id: props.id,
-      name: props.name,
-      
-      price: props.price
+      name: props.title,
+      amount:1,
+      image:props.img,
+      price: props.newPrice
     });
   };
 
@@ -74,7 +87,7 @@ export default function ProductCard(props) {
               color={'purple'}
               fontSize={'1.2em'}>
               <chakra.a href={'#'} display={'flex'}>
-                <Icon as={AiOutlineShoppingCart} h={7} w={7} alignSelf={'center'}  onClick={addToCartHandler(props.id)} />
+                <Icon as={AiOutlineShoppingCart} h={7} w={7} alignSelf={'center'}  onClick={addToCartHandler} />
               </chakra.a>
             </Tooltip>
           </Stack>
