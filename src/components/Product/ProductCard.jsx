@@ -4,7 +4,6 @@ import {
   Tooltip, Center
 } from '@chakra-ui/react';
 import { StarIcon } from '@chakra-ui/icons';
-//import { FiShoppingCart } from 'react-icons/fi'
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useToast } from '@chakra-ui/react'
 import { useContext } from 'react';
@@ -24,7 +23,7 @@ export default function ProductCard(props) {
       title: 'Item added successfully.',
       description: "Check in your cart.",
       status: 'success',
-      duration: 5000,
+      duration: 2000,
       position: 'top',
       variant: 'top-accent',
      isClosable: true,

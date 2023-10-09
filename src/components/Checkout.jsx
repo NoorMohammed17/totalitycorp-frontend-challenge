@@ -71,6 +71,7 @@ const Checkout = (props) => {
 
   return (
     <form className={classes.form} onSubmit={confirmHandler}>
+        <h1 style={{fontSize:'22px', color:'#5a1a01', fontWeight:'bold', textAlign:'center',margin:'30px'}}>Enter your shipping details</h1>
       <div className={nameControlClasses}>
         <label htmlFor='name'>Your Name</label>
         <input type='text' id='name' ref={nameInputRef} />

@@ -1,4 +1,6 @@
 import classes from './CartItem.module.css';
+import { Icon } from '@chakra-ui/react'
+import { MdOutlineDeleteOutline } from 'react-icons/md'
 
 const CartItem = (props) => {
   const price = `$${props.price}`;
@@ -17,6 +19,10 @@ const CartItem = (props) => {
       <div className={classes.actions}>
         <button onClick={props.onRemove}>−</button>
         <button onClick={props.onAdd}>+</button>
+        {/* <button onClick={props.onDelete}>{DeleteIcon}</button> */}
+        <Icon as={MdOutlineDeleteOutline} w={8} h={'3rem'} color='#8a2b06'onClick={props.onDelete} _hover={{ cursor:'pointer'}
+         
+        }/>
       </div>
     </li>
   );

@@ -2,7 +2,6 @@ import ProductCard from "./ProductCard";
 import data from '../../data/data';
 import classes from "./Product.module.css";
 import { SimpleGrid } from "@chakra-ui/react";
-//import ProductItem from "./ProductItem";
 
 
 

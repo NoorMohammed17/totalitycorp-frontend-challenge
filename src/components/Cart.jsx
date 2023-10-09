@@ -22,6 +22,10 @@ const Cart = (props) => {
     cartCtx.addItem({ ...item, amount: 1 });
   };
 
+  const cartItemDeleteHandler = (id) => {
+    cartCtx.removeCompletely(id)
+  }
+
   const orderHandler = () => {
     setIsCheckout(true);
   };
@@ -44,6 +48,7 @@ const Cart = (props) => {
           price={item.price}
           onRemove={cartItemRemoveHandler.bind(null, item.id)}
           onAdd={cartItemAddHandler.bind(null, item)}
+          onDelete = {cartItemDeleteHandler.bind(null,item.id)}
         />
       ))}
     </ul>
