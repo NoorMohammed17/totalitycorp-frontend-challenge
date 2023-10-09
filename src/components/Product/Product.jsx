@@ -19,7 +19,8 @@ const Products = (props) => {
   let obj = {
     params: {
         category: searchParams.getAll('category'),
-        _sort: searchParams.get('order') && 'price',
+        company:searchParams.getAll('company'),
+        _sort: searchParams.get('order') && 'newPrice',
         _order: searchParams.get('order'),
     }
   }

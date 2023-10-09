@@ -8,6 +8,9 @@ const Sidebar = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const initialCategoryParams = searchParams.getAll('category')  // to make the URL not change after the reload
     const [category, setCategory] = useState(initialCategoryParams || []); //['sneakers','flats','sandals','heels']
+    const initialBrandParams = searchParams.getAll('company')  // to make the URL not change after the reload
+    const [company, setCompany] = useState(initialBrandParams || []); //['Nike','Adidas','Puma','Vans']
+
     const initialSortParams = searchParams.get('order')
     const [order, setOrder] = React.useState(initialSortParams || null) //initially  null or data from initialSortParams
     //console.log('sort order:', order)
@@ -30,25 +33,39 @@ const Sidebar = () => {
             newCategory.push(value);
         }
         setCategory(newCategory)
-
     }
+
+    const handleBrandFilter = (e) => {
+        let newBrand = [...company];
+        const value = e.target.value;
+        if (newBrand.includes(value)) {
+            newBrand = newBrand.filter((el) => el !== value)
+        } else {
+            newBrand.push(value);
+        }
+        setCompany(newBrand)
+    }
+
     console.log("Category:", category)
     console.log("searchParams.getAll:", searchParams.getAll("category"))
+    console.log("searchParams.getAll:", searchParams.getAll("company"))
     console.log("searchParams.Sorting:", searchParams.get("order"))
 
     const handleResetFilters = () => {
         setCategory([]);
+        setCompany([]);
         setOrder(null);
         
     }
 
     useEffect(() => {
         let params = {
-            category,   
+            category,  
+            company, 
         }
         order && (params.order = order) //if order present then only pass order 
         setSearchParams(params)
-    }, [category, order])
+    }, [category,company, order])
 
     return (
         <Box
@@ -60,7 +77,9 @@ const Sidebar = () => {
             w={{ base: 'full', md: 'full', sm: 'full' }}
         // border={'1px solid red'}
         >
-            <Heading as='h4' size='md' marginBottom={'20px'}>Filter By Category</Heading>
+            <Heading as='h3' size='md' marginBottom={'20px'}>Filter By </Heading> 
+
+            <Heading as='h4' size='md' marginBottom={'20px'}>Category</Heading>
             <Stack spacing={1} direction={['row', 'row', 'column', 'column']}
                 marginBottom={'20px'}>
                 <Checkbox colorScheme='green' value={'sneakers'} onChange={handleFilter} isChecked={category.includes('sneakers')}>
@@ -74,6 +93,24 @@ const Sidebar = () => {
                 </Checkbox>
                 <Checkbox colorScheme='green' value={'heels'} onChange={handleFilter} isChecked={category.includes('heels')}>
                 Heels
+                </Checkbox>
+            </Stack>
+
+            <Heading as='h4' size='md' marginBottom={'20px'}>Brand</Heading>
+
+            <Stack spacing={1} direction={['row', 'row', 'column', 'column']}
+                marginBottom={'20px'}>
+                <Checkbox colorScheme='green' value={'Nike'} onChange={handleBrandFilter} isChecked={category.includes('Nike')}>
+                  Nike
+                </Checkbox>
+                <Checkbox colorScheme='green' value={'Adidas'} onChange={handleBrandFilter} isChecked={category.includes('Adidas')}>
+                Adidas
+                </Checkbox>
+                <Checkbox colorScheme='green' value={'Puma'} onChange={handleBrandFilter} isChecked={category.includes('Puma')}>
+                Puma
+                </Checkbox>
+                <Checkbox colorScheme='green' value={'Vans'} onChange={handleBrandFilter} isChecked={category.includes('Vans')}>
+                Vans
                 </Checkbox>
             </Stack>
 
