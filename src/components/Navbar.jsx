@@ -22,9 +22,10 @@ import { HamburgerIcon, CloseIcon, } from '@chakra-ui/icons';
 import { FiHeart } from "react-icons/fi";
 import { AiOutlineShoppingCart, AiOutlineUserAdd } from "react-icons/ai";
 import propic from '../assets/propic.jpg'
-import Auth from './Auth';
+//import Auth from './Auth';
 import { authActions } from '../store/Store';
 import ProductsPage from '../pages/ProductsPage';
+import About from '../pages/About';
 
 
 
@@ -127,12 +128,12 @@ export default function Navbar(props) {
                                     </Center>
                                     <br />
                                     <Center>
-                                        <p>Username</p>
+                                        <Text colorScheme='pink'>Username</Text>
                                     </Center>
                                     <br />
                                     <MenuDivider />
 
-                                    <MenuItem onClick={logoutHandler}><Center>Logout</Center></MenuItem>
+                                    <MenuItem onClick={logoutHandler}><Center colorScheme='pink'>Logout</Center></MenuItem>
                                 </MenuList>
                             </Menu>}
 
@@ -152,7 +153,7 @@ export default function Navbar(props) {
             </Box>
 
             <Box p={4}>
-                {!isAuth && <Auth />}
+                {!isAuth && <About />}
                 {isAuth && <ProductsPage/>}
             </Box>
         </>
