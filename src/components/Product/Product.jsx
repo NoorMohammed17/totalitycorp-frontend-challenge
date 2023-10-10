@@ -1,6 +1,6 @@
-import {useState, useEffect} from 'react';
-import { useSearchParams ,useLocation} from 'react-router-dom';
-import { SimpleGrid } from "@chakra-ui/react";
+import { useState, useEffect } from 'react';
+import { useSearchParams, useLocation } from 'react-router-dom';
+import { SimpleGrid, Spinner } from "@chakra-ui/react";
 import axios from 'axios';
 import ProductCard from "./ProductCard";
 //import data from '../../data/data';
@@ -13,36 +13,53 @@ const url = 'https://lazy-mite-cardigan.cyclic.app/products'
 
 const Products = (props) => {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchParams] = useSearchParams();
   const location = useLocation()
 
   let obj = {
     params: {
-        category: searchParams.getAll('category'),
-        company:searchParams.getAll('company'),
-        color:searchParams.getAll('color'),
-        _sort: searchParams.get('order') && 'newPrice',
-        _order: searchParams.get('order'),
+      category: searchParams.getAll('category'),
+      company: searchParams.getAll('company'),
+      color: searchParams.getAll('color'),
+      _sort: searchParams.get('order') && 'newPrice',
+      _order: searchParams.get('order'),
     }
   }
 
 
 
   const productsFetchHandler = (paramObj) => {
-    axios
-    .get(url, paramObj)
-    .then((res) => {
-    setProducts(res.data)
-    })
-    .catch((err) => {
-      console.log(err)
-    });
    
-  }
-  useEffect(()=> {
-   productsFetchHandler(obj);
+    axios
+      .get(url, paramObj)
+      .then((res) => {
+        setProducts(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      });
+    setIsLoading(false)
 
-  },[location.search])
+  }
+  useEffect(() => {
+    productsFetchHandler(obj);
+
+  }, [location.search])
+
+  if (isLoading) {
+    return <Spinner
+      position='fixed'
+      z-index={1031}
+      top='20%'
+      left='50%'
+      thickness='4px'
+      speed='0.65s'
+      emptyColor='gray.200'
+      color='blue.500'
+      size='xl'
+    />
+  }
 
 
 

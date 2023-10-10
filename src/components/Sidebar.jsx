@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Checkbox, Stack, Heading } from '@chakra-ui/react'
+import React, { useState, useEffect, } from 'react'
+import { Checkbox, Stack, Heading, Icon, Flex } from '@chakra-ui/react'
 import { useSearchParams } from 'react-router-dom';
 import { Radio, RadioGroup, Box, Button } from '@chakra-ui/react'
 import {
@@ -10,8 +10,17 @@ import {
     AccordionIcon,
 } from '@chakra-ui/react'
 //import { useSelector } from 'react-redux';
+const CircleIcon = (props) => (
+    <Icon viewBox='0 0 200 200' {...props}>
+        <path
+            fill='currentColor'
+            d='M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0'
+        />
+    </Icon>
+)
 
 const Sidebar = () => {
+   
     const [searchParams, setSearchParams] = useSearchParams();
 
     const initialCategoryParams = searchParams.getAll('category')  // to make the URL not change after the reload
@@ -27,6 +36,14 @@ const Sidebar = () => {
     const [order, setOrder] = React.useState(initialSortParams || null) //initially  null or data from initialSortParams
 
 
+    let filtersCount = category.length + company.length + color.length  ;
+    let filtersApplied;
+    if(filtersCount>0){
+        filtersApplied= `(${filtersCount})`;
+    }else{
+        filtersApplied= "";
+    }
+    console.log(filtersApplied)
 
 
 
@@ -98,14 +115,14 @@ const Sidebar = () => {
             w={{ base: 'full', md: 'full', sm: 'full' }}
         // border={'1px solid red'}
         >
-            <Heading as='h3' size='md' marginBottom={'20px'}>Filter By </Heading>
+            <Heading as='h3' size='md' marginBottom={'20px'}>Filter By {filtersApplied} </Heading>
 
             <Accordion allowToggle>
                 <AccordionItem>
                     <h2>
                         <AccordionButton _expanded={{ bg: 'tomato', color: 'white' }}>
                             <Box as="span" flex='1' textAlign='left'>
-                                Category
+                                Category {category.length>0 ? `(${category.length})` : ""}
                             </Box>
                             <AccordionIcon />
                         </AccordionButton>
@@ -154,7 +171,7 @@ const Sidebar = () => {
                     <h2>
                         <AccordionButton _expanded={{ bg: 'tomato', color: 'white' }}>
                             <Box as="span" flex='1' textAlign='left'>
-                                Brand
+                                Brand {company.length>0 ? `(${company.length})` : ""}
                             </Box>
                             <AccordionIcon />
                         </AccordionButton>
@@ -202,7 +219,7 @@ const Sidebar = () => {
                     <h2>
                         <AccordionButton _expanded={{ bg: 'tomato', color: 'white' }}>
                             <Box as="span" flex='1' textAlign='left'>
-                                Color
+                                Color {color.length>0 ? `(${color.length})` : ""}
                             </Box>
                             <AccordionIcon />
                         </AccordionButton>
@@ -211,19 +228,26 @@ const Sidebar = () => {
                         <Stack spacing={1} direction={['row', 'row', 'column', 'column']}
                             marginBottom={'20px'} display={'flex'} justifyContent={{ base: 'space-between', md: 'none' }} >
                             <Checkbox colorScheme='green' value={'red'} onChange={handleColorFilter} isChecked={color.includes('red')}>
-                                Red
+                                <CircleIcon boxSize={6} color='red.500' />  Red
                             </Checkbox>
                             <Checkbox colorScheme='green' value={'green'} onChange={handleColorFilter} isChecked={color.includes('green')}>
-                                Green
+                                <CircleIcon boxSize={6} color='green.500' /> Green
                             </Checkbox>
                             <Checkbox colorScheme='green' value={'black'} onChange={handleColorFilter} isChecked={color.includes('black')}>
-                                Black
+                                <CircleIcon boxSize={6} color='black.500' />  Black
                             </Checkbox>
                             <Checkbox colorScheme='green' value={'blue'} onChange={handleColorFilter} isChecked={color.includes('blue')}>
-                                Blue
+                                <CircleIcon boxSize={6} color='blue.500' />  Blue
                             </Checkbox>
                             <Checkbox colorScheme='green' value={'white'} onChange={handleColorFilter} isChecked={color.includes('white')}>
-                                White
+
+                                <Flex alignItems={'center'}> <Box
+                                    h="18px"
+                                    w="18px"
+                                    marginLeft={'3px'}
+                                    marginRight={'5px'}
+                                    border={'1px solid black'}
+                                    borderRadius="50%"></Box> White</Flex>
                             </Checkbox>
                         </Stack>
                     </AccordionPanel>
@@ -270,7 +294,7 @@ const Sidebar = () => {
                     <h2>
                         <AccordionButton _expanded={{ bg: 'tomato', color: 'white' }}>
                             <Box as="span" flex='1' textAlign='left'>
-                              High/Low
+                                High/Low
                             </Box>
                             <AccordionIcon />
                         </AccordionButton>
