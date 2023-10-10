@@ -22,7 +22,7 @@ import { HamburgerIcon, CloseIcon, } from '@chakra-ui/icons';
 import { FiHeart } from "react-icons/fi";
 import { AiOutlineShoppingCart, AiOutlineUserAdd } from "react-icons/ai";
 import propic from '../assets/propic.jpg'
-//import Auth from './Auth';
+import Auth from './Auth';
 import { authActions } from '../store/Store';
 import ProductsPage from '../pages/ProductsPage';
 import About from '../pages/About';
@@ -63,7 +63,7 @@ export default function Navbar(props) {
 
     return (
         <>
-            <Box bg={useColorModeValue('#3c0080', '#3c0080')} px={4} position="sticky" width={'100%'}   top={0} left={0}  overflow={'hidden'}>
+            <Box bg={useColorModeValue('#3c0080', '#3c0080')} px={4} position="sticky" width={'100%'}   top={0} left={0}  overflow={'hidden'} zIndex={2}>
                 <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
                     <IconButton
                         size={'md'}
@@ -128,12 +128,12 @@ export default function Navbar(props) {
                                     </Center>
                                     <br />
                                     <Center>
-                                        <Text colorScheme='pink'>Username</Text>
+                                        <Text color='pink'>Username</Text>
                                     </Center>
                                     <br />
                                     <MenuDivider />
 
-                                    <MenuItem onClick={logoutHandler}><Center colorScheme='pink'>Logout</Center></MenuItem>
+                                    <MenuItem onClick={logoutHandler}><Center color='pink'>Logout</Center></MenuItem>
                                 </MenuList>
                             </Menu>}
 
@@ -154,6 +154,7 @@ export default function Navbar(props) {
 
             <Box p={4}>
                 {!isAuth && <About />}
+                {!isAuth && <Auth />}
                 {isAuth && <ProductsPage/>}
             </Box>
         </>

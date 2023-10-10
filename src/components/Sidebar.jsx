@@ -13,12 +13,12 @@ const Sidebar = () => {
     const initialBrandParams = searchParams.getAll('company')  // to make the URL not change after the reload
     const [company, setCompany] = useState(initialBrandParams || []); //['Nike','Adidas','Puma','Vans']
 
-       const initialColorParams = searchParams.getAll('color')  // to make the URL not change after the reload
+    const initialColorParams = searchParams.getAll('color')  // to make the URL not change after the reload
     const [color, setColor] = useState(initialColorParams || []); //['Black','Blue','Red','Green','White]
 
     const initialSortParams = searchParams.get('order')
     const [order, setOrder] = React.useState(initialSortParams || null) //initially  null or data from initialSortParams
-   
+
 
 
 
@@ -46,8 +46,8 @@ const Sidebar = () => {
         setCompany(newBrand)
     }
 
-      const handleColorFilter = (e) => {
-        let newColor= [...color];
+    const handleColorFilter = (e) => {
+        let newColor = [...color];
         const value = e.target.value;
         if (newColor.includes(value)) {
             newColor = newColor.filter((el) => el !== value)
@@ -57,29 +57,29 @@ const Sidebar = () => {
         setColor(newColor)
     }
 
-    console.log("Category:", category)
-    console.log("searchParams.getAll:", searchParams.getAll("category"))
-    console.log("searchParams.getAll:", searchParams.getAll("company"))
-     console.log("searchParams.getAll:", searchParams.getAll("color"))
-    console.log("searchParams.Sorting:", searchParams.get("order"))
+    // console.log("Category:", category)
+    // console.log("searchParams.getAll:", searchParams.getAll("category"))
+    // console.log("searchParams.getAll:", searchParams.getAll("company"))
+    //  console.log("searchParams.getAll:", searchParams.getAll("color"))
+    // console.log("searchParams.Sorting:", searchParams.get("order"))
 
     const handleResetFilters = () => {
         setCategory([]);
         setCompany([]);
         setColor([]);
         setOrder(null);
-        
+
     }
 
     useEffect(() => {
         let params = {
-            category,  
-            company, 
+            category,
+            company,
             color,
         }
         order && (params.order = order) //if order present then only pass order 
         setSearchParams(params)
-    }, [category,company,color, order])
+    }, [category, company, color, order])
 
     return (
         <Box
@@ -91,61 +91,62 @@ const Sidebar = () => {
             w={{ base: 'full', md: 'full', sm: 'full' }}
         // border={'1px solid red'}
         >
-            <Heading as='h3' size='md' marginBottom={'20px'}>Filter By </Heading> 
+            <Heading as='h3' size='md' marginBottom={'20px'}>Filter By </Heading>
 
             <Heading as='h4' size='md' marginBottom={'20px'}>Category</Heading>
             <Stack spacing={1} direction={['row', 'row', 'column', 'column']}
-                marginBottom={'20px'}>
+                marginBottom={'20px'} display={'flex'} justifyContent={{ base: 'space-between', md: 'none' }}
+            >
                 <Checkbox colorScheme='green' value={'sneakers'} onChange={handleFilter} isChecked={category.includes('sneakers')}>
-                  Sneakers
+                    Sneakers
                 </Checkbox>
                 <Checkbox colorScheme='green' value={'flats'} onChange={handleFilter} isChecked={category.includes('flats')}>
-                Flats
+                    Flats
                 </Checkbox>
                 <Checkbox colorScheme='green' value={'sandals'} onChange={handleFilter} isChecked={category.includes('sandals')}>
-                Sandals
+                    Sandals
                 </Checkbox>
                 <Checkbox colorScheme='green' value={'heels'} onChange={handleFilter} isChecked={category.includes('heels')}>
-                Heels
+                    Heels
                 </Checkbox>
             </Stack>
 
             <Heading as='h4' size='md' marginBottom={'20px'}>Brand</Heading>
 
             <Stack spacing={1} direction={['row', 'row', 'column', 'column']}
-                marginBottom={'20px'}>
+                marginBottom={'20px'} display={'flex'} justifyContent={{ base: 'space-between', md: 'none' }} >
                 <Checkbox colorScheme='green' value={'Nike'} onChange={handleBrandFilter} isChecked={company.includes('Nike')}>
-                  Nike
+                    Nike
                 </Checkbox>
                 <Checkbox colorScheme='green' value={'Adidas'} onChange={handleBrandFilter} isChecked={company.includes('Adidas')}>
-                Adidas
+                    Adidas
                 </Checkbox>
                 <Checkbox colorScheme='green' value={'Puma'} onChange={handleBrandFilter} isChecked={company.includes('Puma')}>
-                Puma
+                    Puma
                 </Checkbox>
                 <Checkbox colorScheme='green' value={'Vans'} onChange={handleBrandFilter} isChecked={company.includes('Vans')}>
-                Vans
+                    Vans
                 </Checkbox>
             </Stack>
 
-             <Heading as='h4' size='md' marginBottom={'20px'}>Color</Heading>
+            <Heading as='h4' size='md' marginBottom={'20px'}>Color</Heading>
 
             <Stack spacing={1} direction={['row', 'row', 'column', 'column']}
-                marginBottom={'20px'}>
+                marginBottom={'20px'} display={'flex'} justifyContent={{ base: 'space-between', md: 'none' }} >
                 <Checkbox colorScheme='green' value={'red'} onChange={handleColorFilter} isChecked={color.includes('red')}>
-                  Red
+                    Red
                 </Checkbox>
                 <Checkbox colorScheme='green' value={'green'} onChange={handleColorFilter} isChecked={color.includes('green')}>
-                Green
+                    Green
                 </Checkbox>
                 <Checkbox colorScheme='green' value={'black'} onChange={handleColorFilter} isChecked={color.includes('black')}>
-                Black
+                    Black
                 </Checkbox>
                 <Checkbox colorScheme='green' value={'blue'} onChange={handleColorFilter} isChecked={color.includes('blue')}>
-                Blue
+                    Blue
                 </Checkbox>
                 <Checkbox colorScheme='green' value={'white'} onChange={handleColorFilter} isChecked={color.includes('white')}>
-                White
+                    White
                 </Checkbox>
             </Stack>
 
@@ -155,6 +156,7 @@ const Sidebar = () => {
                 <Stack
                     direction={['row', 'row', 'column', 'column']}
                     // direction={['row', 'column']} 
+                    display={'flex'} justifyContent={{ base: 'space-between', md: 'none' }}
                     marginBottom={'20px'}>
                     <Radio value='asc' isChecked={order === 'asc'} >Low to High</Radio>
                     <Radio value='desc' isChecked={order === 'desc'}>High to Low</Radio>
@@ -162,8 +164,8 @@ const Sidebar = () => {
                 </Stack>
             </RadioGroup>
 
-           
-               
+
+
             <Button bg={'teal.400'}
                 color={'white'}
                 size="md"

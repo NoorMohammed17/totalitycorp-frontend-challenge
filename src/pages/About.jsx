@@ -45,7 +45,7 @@ export default function About() {
       title: 'Design Projects 1',
       text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
       image:
-        'https://assets.adidas.com/images/w_600,f_auto,q_auto/f9d52817f7524d3fb442af3b01717dfa_9366/Runfalcon_3.0_Shoes_Black_HQ3790_01_standard.jpg',
+        'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmlrZSUyMHNob2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80',
     },
     {
       title: 'Design Projects 2',
@@ -62,7 +62,7 @@ export default function About() {
   ]
 
   return (
-    <Box position={'relative'} height={'600px'} width={'full'} overflow={'hidden'}>
+    <Box position={'relative'} height={'1000px'} width={'full'} overflow={'hidden'}>
       {/* CSS files for react-slick */}
       <link
         rel="stylesheet"
@@ -118,10 +118,10 @@ export default function About() {
                 position="absolute"
                 top="50%"
                 transform="translate(0, -50%)">
-                <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
+                <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }} color={'gray'}>
                   {card.title}
                 </Heading>
-                <Text fontSize={{ base: 'md', lg: 'lg' }} color="GrayText">
+                <Text fontSize={{ base: 'md', lg: 'lg' }} color="purple">
                   {card.text}
                 </Text>
               </Stack>
