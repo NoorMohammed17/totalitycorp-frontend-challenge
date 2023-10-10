@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { Checkbox, Stack, Heading } from '@chakra-ui/react'
 import { useSearchParams } from 'react-router-dom';
 import { Radio, RadioGroup, Box, Button } from '@chakra-ui/react'
+import {
+    Accordion,
+    AccordionItem,
+    AccordionButton,
+    AccordionPanel,
+    AccordionIcon,
+} from '@chakra-ui/react'
 //import { useSelector } from 'react-redux';
 
 const Sidebar = () => {
@@ -93,7 +100,38 @@ const Sidebar = () => {
         >
             <Heading as='h3' size='md' marginBottom={'20px'}>Filter By </Heading>
 
-            <Heading as='h4' size='md' marginBottom={'20px'}>Category</Heading>
+            <Accordion allowToggle>
+                <AccordionItem>
+                    <h2>
+                        <AccordionButton _expanded={{ bg: 'tomato', color: 'white' }}>
+                            <Box as="span" flex='1' textAlign='left'>
+                                Category
+                            </Box>
+                            <AccordionIcon />
+                        </AccordionButton>
+                    </h2>
+                    <AccordionPanel pb={4}>
+                        <Stack spacing={1} direction={['row', 'row', 'column', 'column']}
+                            marginBottom={'20px'} display={'flex'} justifyContent={{ base: 'space-between', md: 'none' }}
+                        >
+                            <Checkbox colorScheme='green' value={'sneakers'} onChange={handleFilter} isChecked={category.includes('sneakers')}>
+                                Sneakers
+                            </Checkbox>
+                            <Checkbox colorScheme='green' value={'flats'} onChange={handleFilter} isChecked={category.includes('flats')}>
+                                Flats
+                            </Checkbox>
+                            <Checkbox colorScheme='green' value={'sandals'} onChange={handleFilter} isChecked={category.includes('sandals')}>
+                                Sandals
+                            </Checkbox>
+                            <Checkbox colorScheme='green' value={'heels'} onChange={handleFilter} isChecked={category.includes('heels')}>
+                                Heels
+                            </Checkbox>
+                        </Stack>
+                    </AccordionPanel>
+                </AccordionItem>
+            </Accordion>
+
+            {/* <Heading as='h4' size='md' marginBottom={'20px'}>Category</Heading>
             <Stack spacing={1} direction={['row', 'row', 'column', 'column']}
                 marginBottom={'20px'} display={'flex'} justifyContent={{ base: 'space-between', md: 'none' }}
             >
@@ -109,11 +147,41 @@ const Sidebar = () => {
                 <Checkbox colorScheme='green' value={'heels'} onChange={handleFilter} isChecked={category.includes('heels')}>
                     Heels
                 </Checkbox>
-            </Stack>
+            </Stack> */}
 
-            <Heading as='h4' size='md' marginBottom={'20px'}>Brand</Heading>
+            <Accordion allowToggle>
+                <AccordionItem>
+                    <h2>
+                        <AccordionButton _expanded={{ bg: 'tomato', color: 'white' }}>
+                            <Box as="span" flex='1' textAlign='left'>
+                                Brand
+                            </Box>
+                            <AccordionIcon />
+                        </AccordionButton>
+                    </h2>
+                    <AccordionPanel pb={4}>
+                        <Stack spacing={1} direction={['row', 'row', 'column', 'column']}
+                            marginBottom={'20px'} display={'flex'} justifyContent={{ base: 'space-between', md: 'none' }} >
+                            <Checkbox colorScheme='green' value={'Nike'} onChange={handleBrandFilter} isChecked={company.includes('Nike')}>
+                                Nike
+                            </Checkbox>
+                            <Checkbox colorScheme='green' value={'Adidas'} onChange={handleBrandFilter} isChecked={company.includes('Adidas')}>
+                                Adidas
+                            </Checkbox>
+                            <Checkbox colorScheme='green' value={'Puma'} onChange={handleBrandFilter} isChecked={company.includes('Puma')}>
+                                Puma
+                            </Checkbox>
+                            <Checkbox colorScheme='green' value={'Vans'} onChange={handleBrandFilter} isChecked={company.includes('Vans')}>
+                                Vans
+                            </Checkbox>
+                        </Stack>
+                    </AccordionPanel>
+                </AccordionItem>
+            </Accordion>
 
-            <Stack spacing={1} direction={['row', 'row', 'column', 'column']}
+            {/* <Heading as='h4' size='md' marginBottom={'20px'}>Brand</Heading> */}
+
+            {/* <Stack spacing={1} direction={['row', 'row', 'column', 'column']}
                 marginBottom={'20px'} display={'flex'} justifyContent={{ base: 'space-between', md: 'none' }} >
                 <Checkbox colorScheme='green' value={'Nike'} onChange={handleBrandFilter} isChecked={company.includes('Nike')}>
                     Nike
@@ -127,11 +195,44 @@ const Sidebar = () => {
                 <Checkbox colorScheme='green' value={'Vans'} onChange={handleBrandFilter} isChecked={company.includes('Vans')}>
                     Vans
                 </Checkbox>
-            </Stack>
+            </Stack> */}
 
-            <Heading as='h4' size='md' marginBottom={'20px'}>Color</Heading>
+            <Accordion allowToggle>
+                <AccordionItem>
+                    <h2>
+                        <AccordionButton _expanded={{ bg: 'tomato', color: 'white' }}>
+                            <Box as="span" flex='1' textAlign='left'>
+                                Color
+                            </Box>
+                            <AccordionIcon />
+                        </AccordionButton>
+                    </h2>
+                    <AccordionPanel pb={4}>
+                        <Stack spacing={1} direction={['row', 'row', 'column', 'column']}
+                            marginBottom={'20px'} display={'flex'} justifyContent={{ base: 'space-between', md: 'none' }} >
+                            <Checkbox colorScheme='green' value={'red'} onChange={handleColorFilter} isChecked={color.includes('red')}>
+                                Red
+                            </Checkbox>
+                            <Checkbox colorScheme='green' value={'green'} onChange={handleColorFilter} isChecked={color.includes('green')}>
+                                Green
+                            </Checkbox>
+                            <Checkbox colorScheme='green' value={'black'} onChange={handleColorFilter} isChecked={color.includes('black')}>
+                                Black
+                            </Checkbox>
+                            <Checkbox colorScheme='green' value={'blue'} onChange={handleColorFilter} isChecked={color.includes('blue')}>
+                                Blue
+                            </Checkbox>
+                            <Checkbox colorScheme='green' value={'white'} onChange={handleColorFilter} isChecked={color.includes('white')}>
+                                White
+                            </Checkbox>
+                        </Stack>
+                    </AccordionPanel>
+                </AccordionItem>
+            </Accordion>
 
-            <Stack spacing={1} direction={['row', 'row', 'column', 'column']}
+            {/* <Heading as='h4' size='md' marginBottom={'20px'}>Color</Heading> */}
+
+            {/* <Stack spacing={1} direction={['row', 'row', 'column', 'column']}
                 marginBottom={'20px'} display={'flex'} justifyContent={{ base: 'space-between', md: 'none' }} >
                 <Checkbox colorScheme='green' value={'red'} onChange={handleColorFilter} isChecked={color.includes('red')}>
                     Red
@@ -148,10 +249,10 @@ const Sidebar = () => {
                 <Checkbox colorScheme='green' value={'white'} onChange={handleColorFilter} isChecked={color.includes('white')}>
                     White
                 </Checkbox>
-            </Stack>
+            </Stack> */}
 
-            <Heading as='h4' size='md' marginBottom={'20px'}>Sort By Price</Heading>
-            <RadioGroup onChange={setOrder} value={order}>
+            <Heading as='h4' size='md' marginBottom={'20px'} marginTop={'30px'}>Sort By Price</Heading>
+            {/* <RadioGroup onChange={setOrder} value={order}>
 
                 <Stack
                     direction={['row', 'row', 'column', 'column']}
@@ -162,7 +263,34 @@ const Sidebar = () => {
                     <Radio value='desc' isChecked={order === 'desc'}>High to Low</Radio>
 
                 </Stack>
-            </RadioGroup>
+            </RadioGroup> */}
+
+            <Accordion allowToggle>
+                <AccordionItem>
+                    <h2>
+                        <AccordionButton _expanded={{ bg: 'tomato', color: 'white' }}>
+                            <Box as="span" flex='1' textAlign='left'>
+                              High/Low
+                            </Box>
+                            <AccordionIcon />
+                        </AccordionButton>
+                    </h2>
+                    <AccordionPanel pb={4}>
+                        <RadioGroup onChange={setOrder} value={order}>
+
+                            <Stack
+                                direction={['row', 'row', 'column', 'column']}
+                                // direction={['row', 'column']} 
+                                display={'flex'} justifyContent={{ base: 'space-between', md: 'none' }}
+                                marginBottom={'20px'}>
+                                <Radio value='asc' isChecked={order === 'asc'} >Low to High</Radio>
+                                <Radio value='desc' isChecked={order === 'desc'}>High to Low</Radio>
+
+                            </Stack>
+                        </RadioGroup>
+                    </AccordionPanel>
+                </AccordionItem>
+            </Accordion>
 
 
 
