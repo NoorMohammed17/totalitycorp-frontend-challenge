@@ -80,11 +80,13 @@ export default function ProductCard(props) {
               {prevPrice}
             </Text>
             <Tooltip
+            hasArrow
               label="Add to cart"
-              bg="white"
+              bg="#3c0080"
               placement={'top'}
-              color={'purple'}
-              fontSize={'1.2em'}>
+              color={'white'}
+              
+              fontSize={'1em'}>
               <chakra.a href={'#'} display={'flex'}>
                 <Icon as={AiOutlineShoppingCart} h={7} w={7} alignSelf={'center'}  onClick={addToCartHandler} />
               </chakra.a>
