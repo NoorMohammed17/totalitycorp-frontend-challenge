@@ -54,6 +54,7 @@ const ListHeader = ({ children }) => {
 export default function Footer() {
     return (
         <Box
+        marginTop={'30px'}
             bg={useColorModeValue('#333', '#141414')}
             color={useColorModeValue('white', 'white')}>
             <Container as={Stack} maxW={'6xl'} py={10}>

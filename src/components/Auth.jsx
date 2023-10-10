@@ -14,26 +14,32 @@ import {
   useColorModeValue,
   Link,
 } from '@chakra-ui/react'
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useState } from 'react'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
-import {  useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { authActions } from '../store/Store'
 
 const Auth = () => {
- 
+
   const dispatch = useDispatch();
-  
+  const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location)
+
   const [showPassword, setShowPassword] = useState(false)
 
   const loginHandler = () => {
-    dispatch(authActions.login());
+    dispatch(authActions.login())
+    navigate(location.state, { replace: true })
+
   };
   return (
     <Flex
       minH={'100vh'}
       align={'center'}
       justify={'center'}
-    
+
       bg={useColorModeValue('gray.50', 'gray.800')}>
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
@@ -83,7 +89,7 @@ const Auth = () => {
             </FormControl>
             <Stack spacing={10} pt={2}>
               <Button
-              onClick={loginHandler}
+                onClick={loginHandler}
                 loadingText="Submitting"
                 size="lg"
                 bg={'#3c0080'}

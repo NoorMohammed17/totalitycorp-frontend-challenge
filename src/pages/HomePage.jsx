@@ -1,8 +1,8 @@
-
-import Navbar from "../components/Navbar";
+import About from "./About";
+// import Navbar from "../components/Navbar";
 function HomePage() {
   return (
-    <Navbar />
+   <About/>
   );
 }
 

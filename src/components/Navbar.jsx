@@ -12,45 +12,21 @@ import {
     MenuButton,
     MenuList,
     MenuItem,
-    MenuDivider,
     useDisclosure,
     useColorModeValue,
     Stack,
+    MenuDivider,
     Text,
 } from '@chakra-ui/react'
+import { Link } from 'react-router-dom';
 import { HamburgerIcon, CloseIcon, } from '@chakra-ui/icons';
 import { FiHeart } from "react-icons/fi";
 import { AiOutlineShoppingCart, AiOutlineUserAdd } from "react-icons/ai";
 import propic from '../assets/propic.jpg'
-import Auth from './Auth';
+//import Auth from './Auth';
 import { authActions } from '../store/Store';
-import ProductsPage from '../pages/ProductsPage';
-import About from '../pages/About';
-
-
-
-const Links = [ 'Products']
-
-const NavLink = (props) => {
-    const { children } = props
-    return (
-        <Box
-            as="a"
-            px={2}
-            py={1}
-            rounded={'md'}
-            color={'white'}
-            _hover={{
-                textDecoration: 'none',
-                color: '#790da3',
-                bg: 'white',
-
-            }}
-            href={'#'}>
-            {children}
-        </Box>
-    )
-}
+//import ProductsPage from '../pages/ProductsPage';
+//import About from '../pages/About';
 
 export default function Navbar(props) {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -63,7 +39,7 @@ export default function Navbar(props) {
 
     return (
         <>
-            <Box bg={useColorModeValue('#3c0080', '#3c0080')} px={4} position="sticky" width={'100%'}   top={0} left={0}  overflow={'hidden'} zIndex={2}>
+            <Box bg={useColorModeValue('#3c0080', '#3c0080')} px={4} position="sticky" width={'100%'} top={0} left={0} overflow={'hidden'} zIndex={2}>
                 <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
                     <IconButton
                         size={'md'}
@@ -73,18 +49,20 @@ export default function Navbar(props) {
                         onClick={isOpen ? onClose : onOpen}
                     />
                     <HStack spacing={8} alignItems={'center'}>
-                        <Box color={'white'}><Text as='i' fontSize={{ base: 'xl', sm: '3xl' }}>E-commerce</Text></Box>
-                        <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
-                            {Links.map((link) => (
-                                <NavLink key={link}>{link}</NavLink>
-                            ))}
+                        <Box color={'white'}><Text as='i' fontSize={{ base: 'xl', sm: '3xl' }}><Link to={'/'}>E-commerce</Link></Text></Box>
+                        <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }} color={'white'}>
+                            <Link
+                                to="/products"
+                            >
+                                Products
+                            </Link>
                         </HStack>
                     </HStack>
                     <Flex alignItems={'center'} gap={'10px'}>
                         <IconButton
                             isRound={true}
                             fontSize='20px'
-                            
+
                             colorScheme='white'
                             aria-label='wishlist'
                             icon={<FiHeart />}
@@ -99,12 +77,14 @@ export default function Navbar(props) {
                             icon={<AiOutlineShoppingCart />}
                         />
                         {!isAuth &&
-                            <IconButton
+                            <Link to={'/login'}>  <IconButton
+
                                 isRound={true}
                                 fontSize='20px'
                                 colorScheme='white'
                                 aria-label='Login'
-                                icon={<AiOutlineUserAdd />} />}
+                                icon={<AiOutlineUserAdd />} /></Link>
+                        }
                         {isAuth &&
                             <Menu>
                                 <MenuButton
@@ -118,7 +98,7 @@ export default function Navbar(props) {
                                         src={propic}
                                     />
                                 </MenuButton>
-                                <MenuList alignItems={'center'}>
+                                <MenuList alignItems={'center'} zIndex={10}>
                                     <br />
                                     <Center>
                                         <Avatar
@@ -128,35 +108,37 @@ export default function Navbar(props) {
                                     </Center>
                                     <br />
                                     <Center>
-                                        <Text color='pink'>Username</Text>
+                                        <p>Username</p>
                                     </Center>
                                     <br />
                                     <MenuDivider />
-
-                                    <MenuItem onClick={logoutHandler}><Center color='pink'>Logout</Center></MenuItem>
-                                </MenuList>
-                            </Menu>}
-
-
-                    </Flex>
-                </Flex>
+                                    <MenuItem>Your Servers</MenuItem>
+                                    <MenuItem>Account Settings</MenuItem>
+                                    <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+                </MenuList>
+              </Menu>
+                        }
+                                </Flex>
+                            </Flex>
 
                 {isOpen ? (
-                    <Box pb={4} display={{ md: 'none' }}>
-                        <Stack as={'nav'} spacing={4}>
-                            {Links.map((link) => (
-                                <NavLink key={link}>{link}</NavLink>
-                            ))}
-                        </Stack>
+                            <Box pb={4} display={{ md: 'none' }}>
+                                <Stack as={'nav'} spacing={4} color={'white'}>
+                                    <Link
+                                        to="/products"
+                                    >
+                                        Products
+                                    </Link>
+                                </Stack>
+                            </Box>
+                        ) : null}
                     </Box>
-                ) : null}
-            </Box>
 
-            <Box p={4}>
-                {!isAuth && <About />}
-                {!isAuth && <Auth />}
-                {isAuth && <ProductsPage/>}
-            </Box>
-        </>
-    )
+
+                    {/* {!isAuth && <About />} */}
+                    {/* {!isAuth && <Auth />} */}
+                    {/* {isAuth && <ProductsPage />} */}
+
+                </>
+                )
 }

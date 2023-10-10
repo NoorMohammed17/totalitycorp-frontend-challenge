@@ -2,6 +2,7 @@ import {useState} from 'react';
 import Cart from './components/Cart';
 import Navbar from './components/Navbar';
 import CartProvider from './store/CartProvider';
+import MainRoutes from './pages/MainRoutes';
 import './App.css'
 import Footer from './components/Footer';
 //import About from './pages/About';
@@ -22,6 +23,7 @@ function App() {
     
      {cartIsShown && <Cart onClose={hideCartHandler} />}
     <Navbar onShowCart={showCartHandler}/>
+    <MainRoutes/>
     <Footer/>
     </CartProvider>
   )
