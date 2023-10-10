@@ -39,7 +39,7 @@ export default function ProductCard(props) {
 
   const { img, title, stars, reviews, prevPrice, newPrice, company, color, category } = props;
   return (
-    <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' p={'10px'} justifyContent="center"  transition="transform 0.3s ease, box-shadow 0.3s ease"  _hover={{ transform: 'scale(1.1)' , boxShadow: 'rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px'}}>
+    <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' p={'10px'} justifyContent="center"  transition="transform 0.3s ease, box-shadow 0.3s ease"  _hover={{ transform: 'scale(1.05)' , boxShadow: 'rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px'}}>
       <Image src={img} alt={title}
         height={270}
         width={'100%'}

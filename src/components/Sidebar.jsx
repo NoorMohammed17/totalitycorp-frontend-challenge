@@ -6,19 +6,19 @@ import { Radio, RadioGroup, Box, Button } from '@chakra-ui/react'
 
 const Sidebar = () => {
     const [searchParams, setSearchParams] = useSearchParams();
+
     const initialCategoryParams = searchParams.getAll('category')  // to make the URL not change after the reload
     const [category, setCategory] = useState(initialCategoryParams || []); //['sneakers','flats','sandals','heels']
+
     const initialBrandParams = searchParams.getAll('company')  // to make the URL not change after the reload
     const [company, setCompany] = useState(initialBrandParams || []); //['Nike','Adidas','Puma','Vans']
 
+       const initialColorParams = searchParams.getAll('color')  // to make the URL not change after the reload
+    const [color, setColor] = useState(initialColorParams || []); //['Black','Blue','Red','Green','White]
+
     const initialSortParams = searchParams.get('order')
     const [order, setOrder] = React.useState(initialSortParams || null) //initially  null or data from initialSortParams
-    //console.log('sort order:', order)
-  
-    // const { products } = useSelector(store => store.productsReducer);
-
-    // let productsLength = products.length;
-    // console.log("products length:",productsLength)
+   
 
 
 
@@ -46,14 +46,27 @@ const Sidebar = () => {
         setCompany(newBrand)
     }
 
+      const handleColorFilter = (e) => {
+        let newColor= [...color];
+        const value = e.target.value;
+        if (newColor.includes(value)) {
+            newColor = newColor.filter((el) => el !== value)
+        } else {
+            newColor.push(value);
+        }
+        setColor(newColor)
+    }
+
     console.log("Category:", category)
     console.log("searchParams.getAll:", searchParams.getAll("category"))
     console.log("searchParams.getAll:", searchParams.getAll("company"))
+     console.log("searchParams.getAll:", searchParams.getAll("color"))
     console.log("searchParams.Sorting:", searchParams.get("order"))
 
     const handleResetFilters = () => {
         setCategory([]);
         setCompany([]);
+        setColor([]);
         setOrder(null);
         
     }
@@ -62,10 +75,11 @@ const Sidebar = () => {
         let params = {
             category,  
             company, 
+            color,
         }
         order && (params.order = order) //if order present then only pass order 
         setSearchParams(params)
-    }, [category,company, order])
+    }, [category,company,color, order])
 
     return (
         <Box
@@ -114,6 +128,27 @@ const Sidebar = () => {
                 </Checkbox>
             </Stack>
 
+             <Heading as='h4' size='md' marginBottom={'20px'}>Color</Heading>
+
+            <Stack spacing={1} direction={['row', 'row', 'column', 'column']}
+                marginBottom={'20px'}>
+                <Checkbox colorScheme='green' value={'red'} onChange={handleColorFilter} isChecked={color.includes('red')}>
+                  Red
+                </Checkbox>
+                <Checkbox colorScheme='green' value={'green'} onChange={handleColorFilter} isChecked={color.includes('green')}>
+                Green
+                </Checkbox>
+                <Checkbox colorScheme='green' value={'black'} onChange={handleColorFilter} isChecked={color.includes('black')}>
+                Black
+                </Checkbox>
+                <Checkbox colorScheme='green' value={'blue'} onChange={handleColorFilter} isChecked={color.includes('blue')}>
+                Blue
+                </Checkbox>
+                <Checkbox colorScheme='green' value={'white'} onChange={handleColorFilter} isChecked={color.includes('white')}>
+                White
+                </Checkbox>
+            </Stack>
+
             <Heading as='h4' size='md' marginBottom={'20px'}>Sort By Price</Heading>
             <RadioGroup onChange={setOrder} value={order}>
 
@@ -134,6 +169,7 @@ const Sidebar = () => {
                 size="md"
                 variant='solid'
                 marginTop={'10px'}
+                marginBottom={'30px'}
                 _hover={{
                     bg: 'teal.500',
                 }}

@@ -20,6 +20,7 @@ const Products = (props) => {
     params: {
         category: searchParams.getAll('category'),
         company:searchParams.getAll('company'),
+        color:searchParams.getAll('color'),
         _sort: searchParams.get('order') && 'newPrice',
         _order: searchParams.get('order'),
     }
