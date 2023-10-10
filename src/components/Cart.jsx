@@ -70,7 +70,7 @@ const Cart = (props) => {
   const cartModalContent = (
     <React.Fragment>
       {cartItems}
-      {!hasItems && <h1> No items in the cart</h1>}
+      {!hasItems &&    <img src=' https://www.easygiftflorist.com/public-assets/images/empty-cart.png'/>}
       {hasItems && <div className={classes.total}>
         <span>Total Amount</span>
         <span>{totalAmount}</span>
@@ -81,12 +81,14 @@ const Cart = (props) => {
       {!isCheckout && modalActions}
     </React.Fragment>
   );
+ 
 
   const isSubmittingModalContent = <p>Sending order data...</p>;
 
   const didSubmitModalContent = (
     <React.Fragment>
-      <p>Successfully sent the order!</p>
+      <p style={{textAlign:'center',fontSize:'22px', fontWeight:'bold'}}>Successfully sent the order!</p>
+      <img src='https://cdn.dribbble.com/users/571236/screenshots/2888472/happystate.gif'/>
       <div className={classes.actions}>
         <button className={classes.button} onClick={props.onClose}>
           Close

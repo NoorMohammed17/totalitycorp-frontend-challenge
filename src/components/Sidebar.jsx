@@ -298,7 +298,7 @@ const Sidebar = () => {
                 color={'white'}
                 size="md"
                 variant='solid'
-                marginTop={'10px'}
+                marginTop={'30px'}
                 marginBottom={'30px'}
                 _hover={{
                     bg: 'teal.500',
