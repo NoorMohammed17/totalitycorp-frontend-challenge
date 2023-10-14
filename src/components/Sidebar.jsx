@@ -19,7 +19,7 @@ const CircleIcon = (props) => (
     </Icon>
 )
 
-const Sidebar = () => {
+const Sidebar = (props) => {
    
     const [searchParams, setSearchParams] = useSearchParams();
 
@@ -34,6 +34,8 @@ const Sidebar = () => {
 
     const initialSortParams = searchParams.get('order')
     const [order, setOrder] = React.useState(initialSortParams || null) //initially  null or data from initialSortParams
+
+ 
 
 
     let filtersCount = category.length + company.length + color.length  ;

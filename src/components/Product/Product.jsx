@@ -22,7 +22,6 @@ const Products = (props) => {
       color: searchParams.getAll('color'),
       _sort: searchParams.get('order') && 'newPrice',
       _order: searchParams.get('order'),
-      title_like:props.onInput,
     }
   }
 
