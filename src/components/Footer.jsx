@@ -55,6 +55,10 @@ export default function Footer() {
     return (
         <Box
         marginTop={'30px'}
+        // position={'sticky'}
+        // bottom={0}
+        // left={0}
+        width={'100%'}
             bg={useColorModeValue('#333', '#141414')}
             color={useColorModeValue('white', 'white')}>
             <Container as={Stack} maxW={'6xl'} py={10}>
