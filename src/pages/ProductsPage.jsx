@@ -7,6 +7,8 @@ import { Search2Icon } from '@chakra-ui/icons'
 
 const ProductsPage = () => {
   const [query, setQuery] = React.useState("");
+
+  const handleSubmit = (e) => e.preventDefault();
   const inputChangeHandler = (e) => {
     setQuery(e.target.value)
     console.log(query)
@@ -22,11 +24,12 @@ const ProductsPage = () => {
       <Divider borderColor={'red'} orientation='vertical' />
 
       <Box>
-        <Flex width={{ md: '30%', base: '80%' }} marginTop={'20px'}>
+        <Flex width={{ md: '100%', base: '80%' }} marginTop={'20px'}>
+          <form onSubmit={handleSubmit}>
           <InputGroup>
             <Input
               color='#3c0080'
-              placeholder='Search your favorite products'
+              placeholder='Search '
               _placeholder={{ color: 'inherit' }}
               onChange={inputChangeHandler}
             />
@@ -34,9 +37,10 @@ const ProductsPage = () => {
               <Search2Icon color='#8a2b06' />
             </InputRightElement>
           </InputGroup>
+          </form>
         </Flex>
 
-        <Products />
+        <Products  onInput = {query}/>
       </Box>
 
     </Stack>

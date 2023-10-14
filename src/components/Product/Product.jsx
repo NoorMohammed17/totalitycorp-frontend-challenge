@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSearchParams, useLocation } from 'react-router-dom';
-import { SimpleGrid, Spinner } from "@chakra-ui/react";
+import { SimpleGrid, Spinner ,Text} from "@chakra-ui/react";
 
 import ProductCard from "./ProductCard";
 //import data from '../../data/data';
@@ -11,6 +11,7 @@ const url = 'https://lazy-mite-cardigan.cyclic.app/products'
 
 const Products = (props) => {
   const [products, setProducts] = useState([]);
+  // const [searchResults, setSearchResults]=useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchParams] = useSearchParams();
   const location = useLocation()
@@ -43,7 +44,16 @@ const Products = (props) => {
   useEffect(() => {
     productsFetchHandler(obj);
 
-  }, [location.search])
+  }, [location.search]) ;
+
+  // useEffect(() => {
+  //   if(props.onInput === ""){
+  //     setSearchResults(products)
+  //    }else{
+  //      let newArray = products.filter(product => product.title.inlcudes(props.onInput))
+  //      setSearchResults(newArray)
+  //    }
+  // },[props.onInput])
 
   if (isLoading) {
     return <Spinner
@@ -58,13 +68,20 @@ const Products = (props) => {
       size='xl'
     />
   }
+  console.log(props.onInput)
+
+
+
+ 
 
 
 
   return (
     <section className={classes.products}>
-      <h2>Buy your favorite products</h2>
-      <SimpleGrid columns={[1, 2, 2, 3, 4]} spacing={{ base: '15px', md: '30px' }}>
+      {products.length>0 && <h2>Buy your favorite products</h2>}
+      {products.length > 0 && products ?
+      (
+        <SimpleGrid columns={[1, 2, 2, 3, 4]} spacing={{ base: '15px', md: '30px' }}>
         {products.map((product) => (
           <ProductCard
             key={product.id}
@@ -81,6 +98,14 @@ const Products = (props) => {
           />
         ))}
       </SimpleGrid>
+      )
+      :(<Text fontSize='50px' color='tomato'>
+      No products found
+    </Text>)
+      
+
+      }
+     
     </section>
   );
 };
