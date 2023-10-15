@@ -4,7 +4,7 @@ In this application, we are building a E-commerce website.
 ## Tech stack used :-
 1) React.js
 2) Chakra UI
-3) 
+
 ## some key features :-
 1) Login page
 2) Home page
